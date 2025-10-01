@@ -1,0 +1,22 @@
+.textfield-container {
+  position: relative;
+  display: inline-block;
+  width: 250px;
+  margin: 20px;
+  font-family: sans-serif;
+}
+
+.textfield-container input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  transition: border-color 0.25s, backgrounColor 0.25s;
+}
+
+.textfield-container .helper-text {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #777;
+}

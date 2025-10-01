@@ -1,0 +1,12 @@
+.checkbox-small input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+}
+.checkbox-medium input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+.checkbox-large input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+}

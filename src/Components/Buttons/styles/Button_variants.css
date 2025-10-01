@@ -1,0 +1,32 @@
+.btn-text {
+  background-color: white;
+  color: rgba(2, 141, 255, 0.977);
+  font-weight: bold;
+}
+
+.btn-text:hover {
+  background-color: rgba(25, 118, 210, 0.1);
+}
+
+.btn-contained {
+  background-color: #1976d2;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+}
+
+.btn-contained:hover {
+  background-color: #115293;
+}
+
+.btn-outlined {
+  background-color: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+  font-weight: bold;
+}
+
+.btn-outlined:hover {
+  background-color: #007bff;
+  color: white;
+}

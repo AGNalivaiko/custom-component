@@ -1,0 +1,51 @@
+/* фон модалки */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* само окно */
+.modal-dialog {
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fff;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.25s ease;
+}
+
+/* кнопка закрытия */
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+/* анимация */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

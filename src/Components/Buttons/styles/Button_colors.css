@@ -1,0 +1,71 @@
+.btn-contained.error {
+  background-color: #dc3545;
+  color: white;
+}
+.btn-contained.error:hover:not(:disabled) {
+  background-color: #b02a37;
+}
+
+.btn-contained.success {
+  background-color: #28a745;
+  color: white;
+}
+.btn-contained.success:hover:not(:disabled) {
+  background-color: #1e7e34;
+}
+
+.btn-contained.secondary {
+  background-color: #6c757d;
+  color: white;
+}
+.btn-contained.secondary:hover:not(:disabled) {
+  background-color: #565e64;
+}
+
+.btn-outlined.error {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+.btn-outlined.error:hover:not(:disabled) {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-outlined.success {
+  border-color: #28a745;
+  color: #28a745;
+}
+.btn-outlined.success:hover:not(:disabled) {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-outlined.secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+}
+.btn-outlined.secondary:hover:not(:disabled) {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-text.error {
+  color: #dc3545;
+}
+.btn-text.error:hover:not(:disabled) {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.btn-text.success {
+  color: #28a745;
+}
+.btn-text.success:hover:not(:disabled) {
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+.btn-text.secondary {
+  color: #6c757d;
+}
+.btn-text.secondary:hover:not(:disabled) {
+  background-color: rgba(108, 117, 125, 0.1);
+}

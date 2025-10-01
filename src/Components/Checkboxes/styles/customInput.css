@@ -1,0 +1,28 @@
+.checkbox input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.checkbox input[type="checkbox"]:checked {
+  background-color: currentColor;
+  border-color: currentColor;
+}
+
+.checkbox input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

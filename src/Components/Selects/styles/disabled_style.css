@@ -1,0 +1,8 @@
+.disabled .select-input {
+  background: #f0f0f0;
+  color: #999;
+  cursor: not-allowed;
+}
+.disabled label {
+  color: #aaa;
+}
