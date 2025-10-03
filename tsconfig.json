@@ -1,22 +1,20 @@
 {
   "compilerOptions": {
-    "sourceMap": false,
-    "declaration": true,
-    "declarationMap": false,
-    "emitDeclarationOnly": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "verbatimModuleSyntax": false,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
     "target": "ES2022",
     "lib": ["ES2022", "DOM"],
     "jsx": "react-jsx",
     "module": "ESNext",
     "moduleResolution": "Node",
+    "declaration": true,
+    "declarationMap": false,
+    "emitDeclarationOnly": false,
+    "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "types": ["jest", "@testing-library/jest-dom"]
+  },
+  "include": ["Components/**/*"]
 }
