@@ -1,3 +1,1 @@
-import { createRoot } from "react-dom/client";
-
-const root = createRoot(document.getElementById("root")!);
+export { Buttons, TextField, Selects, Checkbox, Switcher, Modal } from "./Components/imports";

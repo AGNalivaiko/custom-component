@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "production",
-  entry: "./public/index.html",
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
