@@ -1,8 +1,0 @@
-.switch.disabled .switch__slider {
-  background-color: #e0e0e0;
-  cursor: not-allowed;
-}
-.switch.disabled .switch__slider::before {
-  background-color: #bdbdbd;
-  box-shadow: none;
-}

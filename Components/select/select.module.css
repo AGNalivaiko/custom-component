@@ -1,0 +1,111 @@
+.helper-text {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #777;
+}
+
+.outlined .select-input {
+  border: 2px solid #ccc;
+}
+.outlined .select-input:hover {
+  border-color: #1976d2;
+}
+.filled .select-input {
+  background: #f5f5f5;
+  border-bottom: 2px solid transparent;
+}
+.standard .select-input {
+  border-bottom: 2px solid #ccc;
+}
+
+.error .select-input {
+  border-color: #d32f2f !important;
+}
+.error label {
+  color: #d32f2f !important;
+}
+.error .helper-text {
+  color: #d32f2f !important;
+}
+
+.select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 2%;
+  list-style: none;
+  padding: 4px 0;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.select-option {
+  padding: 10px;
+  cursor: pointer;
+}
+.select-option:hover {
+  background: #f0f0f0;
+}
+
+.disabled .select-input {
+  background: #f0f0f0;
+  color: #999;
+  cursor: not-allowed;
+}
+.disabled label {
+  color: #aaa;
+}
+
+.select-container {
+  position: relative;
+  width: 250px;
+  font-family: sans-serif;
+  margin: 20px;
+}
+
+.select-input {
+  position: relative;
+  padding: 16px 12px 8px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition:
+    border-color 0.3s,
+    backgroundColor 0.3s;
+}
+
+/* Label */
+.select-container label {
+  position: absolute;
+  left: 12px;
+  top: 4px;
+  font-size: 16px;
+  color: #777;
+  pointer-events: none;
+  background: white;
+  padding: 0 4px;
+  transition: 0.2s ease all;
+}
+
+/* Floating */
+.select-container .filled + label,
+.select-container label.filled {
+  top: -8px;
+  left: 8px;
+  font-size: 12px;
+  color: #1976d2;
+}
+
+.arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s;
+}
+.arrow.open {
+  transform: translateY(-50%) rotate(180deg);
+}

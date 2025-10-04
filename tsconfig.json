@@ -16,5 +16,6 @@
     "exactOptionalPropertyTypes": true,
     "types": ["jest", "@testing-library/jest-dom"]
   },
-  "include": ["Components/**/*"]
+  "include": ["Components/**/*"],
+  "exclude": ["dist", "node_modules"]
 }
