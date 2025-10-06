@@ -10,7 +10,6 @@
   color: white;
 }
 
-/* Variants */
 .btn-text {
   background-color: white;
   color: rgba(2, 141, 255, 0.977);
@@ -41,7 +40,6 @@
   color: white;
 }
 
-/* Colors for variants */
 .btn-contained-error {
   background-color: #dc3545;
   color: white;
@@ -114,7 +112,6 @@
   background-color: rgba(108, 117, 125, 0.1);
 }
 
-/* Disabled */
 .btn-disabled,
 .btn:disabled {
   background-color: #c0c0c0 !important;
@@ -123,7 +120,6 @@
   border-color: #c0c0c0 !important;
 }
 
-/* Sizes */
 .btn-small {
   font-size: 12px;
   padding: 6px 12px;
@@ -137,7 +133,6 @@
   padding: 14px 28px;
 }
 
-/* Spinner */
 .btn-spinner {
   display: inline-block;
   width: 16px;

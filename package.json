@@ -5,6 +5,10 @@
   "private": false,
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
+  "style": "dist/bundle.css",
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "start": "webpack serve --mode development",
     "test": "jest",

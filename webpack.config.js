@@ -1,5 +1,4 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "production",
@@ -12,9 +11,14 @@ module.exports = {
       type: "umd",
     },
     clean: true,
+    globalObject: "this", 
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],
+  },
+  externals: {
+    react: "react",
+    "react-dom": "react-dom",
   },
   module: {
     rules: [
@@ -26,14 +30,12 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
               modules: {
                 auto: /\.module\.css$/,
               },
-              esModule: false,
             },
           },
         ],
@@ -44,11 +46,6 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "bundle.css",
-    }),
-  ],
   devServer: {
     static: "./dist",
     port: 3000,
