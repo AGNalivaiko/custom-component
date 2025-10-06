@@ -1,0 +1,6 @@
+@import "./button/button.module.css";
+@import "./checkboxe/checkbox.module.css";
+@import "./modal/modal.module.css";
+@import "./select/select.module.css";
+@import "./switcher/swithcer.module.css";
+@import "./textfield/textfield.module.css";

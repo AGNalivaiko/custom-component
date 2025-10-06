@@ -1,7 +1,7 @@
-export { Button } from "./button/Button";
-export { CustomCheckbox as Checkbox } from "./checkboxe/Checkboxes";
-export { Modal } from "./modal/Modal";
-export { Select } from "./select/Select";
-export { Switcher } from "./switcher/Switcher";
-export { TextField } from "./textfield/TextField";
-// import "./../dist/bundle.css";
+export { Button } from "./button/index";
+export { Checkbox } from "./checkboxe/index";
+export { Modal } from "./modal/index";
+export { Select } from "./select/index";
+export { Switcher } from "./switcher/index";
+export { TextField } from "./textfield/index";
+import "./index.css";

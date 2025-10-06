@@ -1,4 +1,5 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "production",
@@ -6,50 +7,34 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    library: {
-      name: "MyUILibrary",
-      type: "umd",
-    },
+    library: { name: "MyUILibrary", type: "umd" },
+    globalObject: "this",
     clean: true,
-    globalObject: "this", 
   },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],
-  },
-  externals: {
-    react: "react",
-    "react-dom": "react-dom",
-  },
+  resolve: { extensions: [".tsx", ".ts", ".js", ".jsx", ".css"] },
+  externals: { react: "react", "react-dom": "react-dom" },
   module: {
     rules: [
+      { test: /\.(ts|tsx)$/, use: "ts-loader", exclude: /node_modules/ },
       {
-        test: /\.(ts|tsx)$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/i,
+        test: /\.module\.css$/i,
         use: [
+          MiniCssExtractPlugin.loader, 
           {
             loader: "css-loader",
             options: {
-              modules: {
-                auto: /\.module\.css$/,
-              },
+              modules: { auto: true, exportOnlyLocals: false, exportLocalsConvention: "asIs" },
+              esModule: false,
             },
           },
         ],
       },
       {
-        test: /\.html$/i,
-        loader: "html-loader",
+        test: /\.css$/i,
+        exclude: /\.module\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
-  devServer: {
-    static: "./dist",
-    port: 3000,
-    hot: true,
-    open: true,
-  },
+  plugins: [new MiniCssExtractPlugin({ filename: "bundle.css" })],
 };

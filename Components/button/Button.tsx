@@ -42,6 +42,7 @@ export function Button({
   const className = [baseClass, variantClass, sizeClass, colorClass, disabledClass]
     .filter(Boolean)
     .join(" ");
+  console.log(styles);
 
   return (
     <button
