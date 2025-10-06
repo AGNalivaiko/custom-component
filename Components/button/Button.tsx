@@ -1,15 +1,6 @@
 import styles from "./button.module.css";
-import React, { ReactNode, MouseEventHandler, ButtonHTMLAttributes } from "react";
-
-type ButtonsProp = {
-  variant?: "text" | "contained" | "outlined";
-  size?: "small" | "medium" | "large";
-  color?: "primary" | "success" | "error" | "secondary";
-  disabled?: boolean;
-  loading?: boolean;
-  children: ReactNode;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+import ClassNames from "classnames/bind";
+import { ButtonsProp } from "./Button.types";
 
 export function Button({
   variant = "contained",
@@ -21,28 +12,16 @@ export function Button({
   onClick,
   ...rest
 }: ButtonsProp): React.ReactElement {
-  const baseClass = styles.btn;
+  const cx = ClassNames.bind(styles);
 
-  const variantClass = {
-    text: styles["btn-text"],
-    contained: styles["btn-contained"],
-    outlined: styles["btn-outlined"],
-  }[variant];
-
-  const sizeClass = {
-    small: styles["btn-small"],
-    medium: styles["btn-medium"],
-    large: styles["btn-large"],
-  }[size];
-
-  const colorClass = color === "primary" ? "" : styles[`btn-${variant}-${color}`];
-
-  const disabledClass = disabled ? styles["btn-disabled"] : "";
-
-  const className = [baseClass, variantClass, sizeClass, colorClass, disabledClass]
-    .filter(Boolean)
-    .join(" ");
-  console.log(styles);
+  const className = cx(
+    "btn", 
+    `btn-${variant}`, 
+    `btn-${size}`, 
+    {
+    [`${color}`]: color !== "primary",
+    "btn-disabled": disabled,
+  });
 
   return (
     <button

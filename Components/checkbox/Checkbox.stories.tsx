@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CustomCheckbox } from "./Checkboxes";
+import { CustomCheckbox } from "./Checkbox";
 
 const meta: Meta<typeof CustomCheckbox> = {
   title: "UI/CustomCheckbox",

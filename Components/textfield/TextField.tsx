@@ -1,21 +1,11 @@
 import styles from "./textfield.module.css";
-import { RefObject, useState } from "react";
-
-type TextFieldProp = {
-  variant?: "filled" | "standard" | "outlined";
-  size?: "small" | "medium" | "standard";
-  label?: string;
-  required?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  error?: boolean;
-  helperText?: string;
-  ref?: RefObject<HTMLInputElement>;
-};
+import classNames from "classnames/bind";
+import { TextFieldProp } from "./TextField.types";
+import { useState } from "react";
 
 export function TextField({
   variant = "outlined",
-  size = "medium",
+  sizeField = "medium",
   label = "",
   required = false,
   disabled = false,
@@ -25,25 +15,17 @@ export function TextField({
   ref,
 }: TextFieldProp): React.ReactElement {
   const [value, setValue] = useState("");
+  const cx = classNames.bind(styles);
 
-  const variants = {
-    outlined: styles["outlined"],
-    filled: styles["filled"],
-    standard: styles["standard"],
-  }[variant];
-
-  const sizes = {
-    small: styles["small"],
-    medium: styles["medium "],
-    standard: styles["large"],
-  }[size];
-
-  const className = `${styles["textfield-container"]} 
-    ${variants}
-    ${sizes}
-    ${disabled ? styles["textfield-disabled"] : ""}
-    ${error ? styles["textfield-error"] : ""}
-    `;
+  const className = cx(
+    "textfield-container",
+    `${variant}`,
+    `${sizeField}`,
+    {
+      "textfield-disabled": disabled,
+      "textfield-error": error,
+    },
+  );
 
   return (
     <div className={className}>
@@ -58,11 +40,11 @@ export function TextField({
         required={required}
       />
       {label && (
-        <label htmlFor={`textfield-${label}`} className={value ? "filled" : ""}>
+        <label htmlFor={`textfield-${label}`} className={cx({ "filled": !value })}>
           {label} {required ? "*" : ""}
         </label>
       )}
-      {helperText && <span className="helper-text">{helperText}</span>}
+      {helperText && <span className={styles["helper-text"]}>{helperText}</span>}
     </div>
   );
 }

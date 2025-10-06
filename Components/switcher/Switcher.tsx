@@ -1,12 +1,6 @@
 import styles from "./swithcer.module.css";
-import { ChangeEventHandler, RefObject } from "react";
-
-type SwitcherProp = {
-  checked?: boolean;
-  onChange?: ChangeEventHandler;
-  disabled?: boolean;
-  ref?: RefObject<HTMLInputElement>;
-};
+import { SwitcherProp } from "./Switcher.types";
+import classNames from "classnames/bind";
 
 export function Switcher({
   checked,
@@ -14,12 +8,15 @@ export function Switcher({
   disabled = false,
   ref,
 }: SwitcherProp): React.ReactElement {
+  const cx = classNames.bind(styles);
+
+  const className = cx("switch", {
+    disable: disabled,
+    checked: checked,
+  });
+
   return (
-    <label
-      className={`${styles["switch"]}
-        ${disabled ? styles["disabled"] : ""} 
-        ${checked ? styles["myChecked"] : ""}`}
-    >
+    <label className={className}>
       <input
         ref={ref}
         type="checkbox"

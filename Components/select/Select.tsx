@@ -1,20 +1,7 @@
 import styles from "./select.module.css";
 import React, { useState } from "react";
-
-type Option = {
-  label: string;
-  value: string;
-};
-
-type SelectProps = {
-  variant?: "outlined" | "filled" | "standard";
-  label?: string;
-  options?: Option[];
-  disabled?: boolean;
-  required?: boolean;
-  error?: boolean;
-  helperText?: string;
-};
+import { SelectProps } from "./Select.types";
+import classNames from "classnames/bind";
 
 export function Select({
   label = "Select",
@@ -27,12 +14,20 @@ export function Select({
 }: SelectProps): React.ReactElement {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string>("");
+  const cx = classNames.bind(styles);
 
-  const variants = {
-    outlined: styles["outlined"],
-    filled: styles["filled"],
-    standard: styles["standard"],
-  }[variant];
+  const classNameSelectContainer = cx(
+    "select-container",
+    `select-container-${variant}`,
+    {
+      "filled": variant === "filled",
+      "disabled": disabled,
+      "error": error,
+    },
+  );
+  const classNameSelectedValue = cx("selected-value", { filled: selected });
+  const classNameArrow = cx("arrow", { open: open });
+
 
   function toggleOpen() {
     if (!disabled) {
@@ -46,19 +41,13 @@ export function Select({
   }
 
   return (
-    <div
-      className={` ${styles["select-container"]} ${variants} 
-        ${disabled ? styles["disabled"] : ""} 
-        ${error ? styles["error"] : ""}`}
-    >
+    <div className={classNameSelectContainer}>
       <div className={styles["select-input"]} onClick={toggleOpen}>
-        <span className={`${styles["selected-value"]} ${selected ? styles["filled"] : ""}`}>
-          {selected || ""}
-        </span>
-        <label className={selected ? "filled" : ""}>
+        <span className={classNameSelectedValue}>{selected || ""}</span>
+        <label className={selected ? styles.filled : ""}>
           {label} {required ? "*" : ""}
         </label>
-        <span className={`${styles["arrow"]} ${open ? styles["open"] : ""}`}>▾</span>
+        <span className={classNameArrow}>▾</span>
       </div>
 
       {open && (

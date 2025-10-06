@@ -1,5 +1,5 @@
 import { fireEvent, getByRole, render, screen } from "@testing-library/react";
-import { CustomCheckbox } from "./Checkboxes";
+import { CustomCheckbox } from "./Checkbox";
 
 describe("Checkbox component", () => {
   it("Рисуется ли стандартный чекбокс", () => {

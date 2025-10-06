@@ -17,7 +17,7 @@ describe("TextField component", () => {
     render(
       <TextField
         variant="filled"
-        size="small"
+        sizeField="small"
         disabled
         error
         label="Test"
