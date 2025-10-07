@@ -17,15 +17,10 @@ export function TextField({
   const [value, setValue] = useState("");
   const cx = classNames.bind(styles);
 
-  const className = cx(
-    "textfield-container",
-    `${variant}`,
-    `${sizeField}`,
-    {
-      "textfield-disabled": disabled,
-      "textfield-error": error,
-    },
-  );
+  const className = cx("textfield-container", `${variant}`, `${sizeField}`, {
+    "textfield-disabled": disabled,
+    "textfield-error": error,
+  });
 
   return (
     <div className={className}>
@@ -40,7 +35,7 @@ export function TextField({
         required={required}
       />
       {label && (
-        <label htmlFor={`textfield-${label}`} className={cx({ "filled": !value })}>
+        <label htmlFor={`textfield-${label}`} className={cx({ filled: !value })}>
           {label} {required ? "*" : ""}
         </label>
       )}

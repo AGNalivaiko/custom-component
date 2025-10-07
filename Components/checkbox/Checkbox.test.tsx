@@ -1,32 +1,36 @@
-import { fireEvent, getByRole, render, screen } from "@testing-library/react";
-import { CustomCheckbox } from "./Checkbox";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { Checkbox } from ".";
+import { CONSTANTS } from "./Checkbox.constants";
+
+const renderCheckbox = (prop = {}) => {
+  render(<Checkbox {...prop} />);
+};
 
 describe("Checkbox component", () => {
+  const handleChange = jest.fn();
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("Рисуется ли стандартный чекбокс", () => {
-    render(
-      <CustomCheckbox
-        variant="outlined"
-        sizeCheckbox="medium"
-        color="primary"
-        label="enter your label"
-      />,
-    );
+    renderCheckbox({ ...CONSTANTS.DEFAULT_CLASSES });
     expect(screen.getByText("enter your label")).toBeInTheDocument();
   });
 
   it("Применяет классы в зависимости от variant, size, color", () => {
-    render(
-      <CustomCheckbox variant="contained" sizeCheckbox="large" color="success" label="test" />,
-    );
-    expect(screen.getByLabelText("test").closest("label")).toHaveClass(
-      "checkbox-contained",
-      "checkbox-large",
-      "checkbox-success",
-    );
+    renderCheckbox({ ...CONSTANTS.CUSTOM_PROPS });
+    expect(screen.getByLabelText("test").closest("label")).toHaveClass(...CONSTANTS.CUSTOM_CLASSES);
   });
 
   it("Применяется disabled, required, checked, error", () => {
-    render(<CustomCheckbox disabled required checked error label="testing" />);
+    renderCheckbox({
+      disabled: true,
+      required: true,
+      checked: true,
+      error: true,
+      label: "testing",
+    });
     const checkbox = screen.getByRole("checkbox", { name: /testing/i });
 
     expect(checkbox).toBeChecked();
@@ -35,8 +39,7 @@ describe("Checkbox component", () => {
   });
 
   it("Работает ли onChange", () => {
-    const handleChange = jest.fn();
-    render(<CustomCheckbox onChange={handleChange} />);
+    renderCheckbox({ onChange: handleChange });
     const checkbox = screen.getByRole("checkbox");
 
     fireEvent.click(checkbox);

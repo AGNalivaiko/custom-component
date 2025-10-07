@@ -1,5 +1,5 @@
 import styles from "./select.module.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import { SelectProps } from "./Select.types";
 import classNames from "classnames/bind";
 
@@ -16,18 +16,13 @@ export function Select({
   const [selected, setSelected] = useState<string>("");
   const cx = classNames.bind(styles);
 
-  const classNameSelectContainer = cx(
-    "select-container",
-    `select-container-${variant}`,
-    {
-      "filled": variant === "filled",
-      "disabled": disabled,
-      "error": error,
-    },
-  );
+  const classNameSelectContainer = cx("select-container", `select-container-${variant}`, {
+    filled: variant === "filled",
+    disabled: disabled,
+    error: error,
+  });
   const classNameSelectedValue = cx("selected-value", { filled: selected });
   const classNameArrow = cx("arrow", { open: open });
-
 
   function toggleOpen() {
     if (!disabled) {

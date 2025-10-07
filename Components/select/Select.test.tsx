@@ -1,22 +1,26 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Select } from "./Select";
+import { LABELS, OPTIONS, HELPERTEXT, VARIANTS } from "./Select.constants";
+
+const renderSelect = (props = {}) => {
+  return render(<Select {...props} />);
+};
 
 describe("Selects component", () => {
-  it("Рендерит label по умолчанию", () => {
-    render(<Select label="Выбери значение" />);
-    expect(screen.getByText("Выбери значение")).toBeInTheDocument();
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("Рендерит label и variant=standard по умолчанию", () => {
+    const { container } = renderSelect({ label: LABELS.default, variants: VARIANTS.standard });
+    const wrapper = container.firstChild as HTMLElement;
+
+    expect(wrapper).toHaveClass(VARIANTS.standard);
+    expect(screen.getByText(LABELS.default)).toBeInTheDocument();
   });
 
   it("Открывает и закрывает список при клике", () => {
-    render(
-      <Select
-        label="Города"
-        options={[
-          { label: "Москва", value: "moscow" },
-          { label: "Питер", value: "spb" },
-        ]}
-      />,
-    );
+    renderSelect({ label: LABELS.cities, options: OPTIONS.cities });
 
     expect(screen.queryByRole("list")).not.toBeInTheDocument();
 
@@ -28,15 +32,7 @@ describe("Selects component", () => {
   });
 
   it("Выбирает значение при клике на опцию", () => {
-    render(
-      <Select
-        label="Фрукты"
-        options={[
-          { label: "Яблоко", value: "apple" },
-          { label: "Банан", value: "banana" },
-        ]}
-      />,
-    );
+    renderSelect({ label: LABELS.fruits, options: OPTIONS.fruits });
 
     fireEvent.click(screen.getByText("Фрукты"));
 
@@ -47,8 +43,13 @@ describe("Selects component", () => {
     expect(screen.queryByRole("list")).not.toBeInTheDocument();
   });
 
-  it("Добавляет классы disabled и error", () => {
-    const { container } = render(<Select label="Test" disabled error variant="filled" />);
+  it("Добавляет классы disabled и error, variant=filled", () => {
+    const { container } = renderSelect({
+      label: LABELS.test,
+      disabled: true,
+      error: true,
+      variant: "filled",
+    });
 
     const wrapper = container.firstChild;
     expect(wrapper).toHaveClass("disabled");
@@ -57,15 +58,20 @@ describe("Selects component", () => {
   });
 
   it("Показывает helperText", () => {
-    render(<Select label="Email" helperText="Введите правильный email" />);
-    expect(screen.getByText("Введите правильный email")).toBeInTheDocument();
+    renderSelect({ label: LABELS.email, helperText: HELPERTEXT });
+    expect(screen.getByText(HELPERTEXT)).toBeInTheDocument();
   });
 
   it("Не открывает список если disabled=true", () => {
-    render(<Select label="Страны" disabled options={[{ label: "Россия", value: "ru" }]} />);
+    renderSelect({ label: LABELS.countries, disabled: true, options: OPTIONS.countries });
 
     fireEvent.click(screen.getByText("Страны"));
 
     expect(screen.queryByRole("list")).not.toBeInTheDocument();
+  });
+
+  it("Добавляет required метку", () => {
+    renderSelect({ label: "Поле", required: true });
+    expect(screen.getByText("Поле *")).toBeInTheDocument();
   });
 });

@@ -1,18 +1,29 @@
 {
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
+    "airbnb",
+    "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:storybook/recommended"
-  ],
-  "plugins": [
-    "react",
-    "@typescript-eslint"
+    "plugin:prettier/recommended"
   ],
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "prettier/prettier": ["error"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "import/prefer-default-export": "off"
   },
   "settings": {
     "react": {

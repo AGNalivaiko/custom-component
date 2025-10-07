@@ -5,6 +5,7 @@ beforeEach(() => {
   const modalRoot = document.createElement("div");
   modalRoot.setAttribute("id", "modal");
   document.body.append(modalRoot);
+  jest.clearAllMocks();
 });
 
 afterEach(() => {
@@ -15,14 +16,21 @@ afterEach(() => {
 });
 
 describe("Modal component", () => {
+  const handleClick = jest.fn();
+
+  it("Рендерится с children", () => {
+    render(<Modal open={true}>test modal</Modal>);
+    const modal = screen.getByText("test modal");
+    expect(modal).toBeInTheDocument();
+  });
+
   it("рендерится если open=true", () => {
-    render(<Modal open>test modal</Modal>);
+    render(<Modal open={true}>test modal</Modal>);
     const modal = screen.getByText("test modal");
     expect(modal).toBeInTheDocument();
   });
 
   it("Закрывается по клику", () => {
-    const handleClick = jest.fn();
     render(
       <Modal open={true} onClose={handleClick}>
         test

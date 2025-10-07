@@ -1,14 +1,24 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Switcher } from "./Switcher";
 
+const renderSwitcher = (props = {}) => {
+  render(<Switcher {...props} />);
+};
+
 describe("Swithcer component", () => {
+  const handleChange = jest.fn();
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("рендерится ли вообще", () => {
-    render(<Switcher />);
+    renderSwitcher();
     expect(screen.getByRole("checkbox")).toBeInTheDocument();
   });
 
   it("Применяется ли checked  и disabled", () => {
-    render(<Switcher checked disabled />);
+    renderSwitcher({ checked: true, disabled: true });
 
     const box = screen.getByRole("checkbox");
 
@@ -17,9 +27,7 @@ describe("Swithcer component", () => {
   });
 
   it("Вызывается ли onChange при клике", () => {
-    const handleChange = jest.fn();
-
-    render(<Switcher onChange={handleChange} />);
+    renderSwitcher({ onChange: handleChange });
 
     const box = screen.getByRole("checkbox");
 

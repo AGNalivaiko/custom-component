@@ -14,11 +14,7 @@ export function Button({
 }: ButtonsProp): React.ReactElement {
   const cx = ClassNames.bind(styles);
 
-  const className = cx(
-    "btn", 
-    `btn-${variant}`, 
-    `btn-${size}`, 
-    {
+  const className = cx("btn", `btn-${variant}`, `btn-${size}`, {
     [`${color}`]: color !== "primary",
     "btn-disabled": disabled,
   });
