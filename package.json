@@ -1,8 +1,15 @@
 {
   "name": "custom-component-webpack",
   "version": "1.0.0",
-  "description": "",
+  "description": "The library of custom component",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AGNalivaiko/custom-component"
+  },
+  "bugs": {
+    "url": "https://github.com/AGNalivaiko/custom-component/issues"
+  },
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
   "style": "dist/bundle.css",
@@ -25,6 +32,7 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "homepage": "https://github.com/AGNalivaiko/custom-component",
   "lint-staged": {
     "*.{ts,tsx}": [
       "eslint --fix",
