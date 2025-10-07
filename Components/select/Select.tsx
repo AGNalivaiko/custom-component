@@ -37,7 +37,17 @@ export function Select({
 
   return (
     <div className={classNameSelectContainer}>
-      <div className={styles["select-input"]} onClick={toggleOpen}>
+      <div
+        className={styles["select-input"]}
+        onClick={toggleOpen}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            toggleOpen();
+          }
+        }}
+      >
         <span className={classNameSelectedValue}>{selected || ""}</span>
         <label className={selected ? styles.filled : ""}>
           {label} {required ? "*" : ""}
@@ -46,12 +56,19 @@ export function Select({
       </div>
 
       {open && (
-        <ul className={styles["select-dropdown"]}>
+        <ul className={styles["select-dropdown"]} role="listbox">
           {options.map((opt) => (
             <li
               key={opt.value}
               className={styles["select-option"]}
               onClick={() => hadleSelect(opt.label)}
+              role="option"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  hadleSelect(opt.label);
+                }
+              }}
             >
               {opt.label}
             </li>

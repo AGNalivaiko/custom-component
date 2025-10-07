@@ -12,7 +12,7 @@ export function Modal({ open, onClose, children }: ModalProps): React.ReactEleme
 
   return createPortal(
     <div className={styles["modal-backdrop"]} onClick={onClose}>
-      <dialog open className={styles["modal-dialog"]} onClick={(e) => e.stopPropagation()}>
+      <dialog open className={styles["modal-dialog"]}>
         <button className={styles["modal-close"]} onClick={onClose}>
           ✕
         </button>

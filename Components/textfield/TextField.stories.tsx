@@ -29,7 +29,7 @@ export const Default: Story = {
   args: {
     label: "Введите текст",
     variant: "outlined",
-    size: "medium",
+    sizeField: "medium",
     required: false,
     disabled: false,
     readOnly: false,
@@ -42,7 +42,7 @@ export const WithHelperText: Story = {
   args: {
     label: "Email",
     variant: "filled",
-    size: "medium",
+    sizeField: "medium",
     helperText: "Введите корректный email",
   },
 };

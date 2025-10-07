@@ -22,10 +22,10 @@ describe("Selects component", () => {
   it("Открывает и закрывает список при клике", () => {
     renderSelect({ label: LABELS.cities, options: OPTIONS.cities });
 
-    expect(screen.queryByRole("list")).not.toBeInTheDocument();
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByText("Города"));
-    expect(screen.getByRole("list")).toBeInTheDocument();
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
 
     fireEvent.click(screen.getByText("Города"));
     expect(screen.queryByRole("list")).not.toBeInTheDocument();
@@ -40,7 +40,7 @@ describe("Selects component", () => {
 
     expect(screen.getByText("Банан")).toBeInTheDocument();
 
-    expect(screen.queryByRole("list")).not.toBeInTheDocument();
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
   it("Добавляет классы disabled и error, variant=filled", () => {
