@@ -1,5 +1,5 @@
 /* фон модалки */
-.modal-backdrop {
+.modalBackdrop {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -10,7 +10,7 @@
 }
 
 /* само окно */
-.modal-dialog {
+.modalDialog {
   border: none;
   border-radius: 12px;
   padding: 20px;
@@ -23,7 +23,7 @@
 }
 
 /* кнопка закрытия */
-.modal-close {
+.modalClose {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -34,7 +34,7 @@
   color: #555;
 }
 
-.modal-close:hover {
+.modalClose:hover {
   color: #000;
 }
 

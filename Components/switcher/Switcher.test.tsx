@@ -6,30 +6,37 @@ const renderSwitcher = (props = {}) => {
 };
 
 describe("Swithcer component", () => {
-  const handleChange = jest.fn();
-
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("рендерится ли вообще", () => {
     renderSwitcher();
-    expect(screen.getByRole("checkbox")).toBeInTheDocument();
+    expect(screen.getByTestId("switcher-input")).toBeInTheDocument();
   });
 
-  it("Применяется ли checked  и disabled", () => {
-    renderSwitcher({ checked: true, disabled: true });
+  it("Применяется ли disabled", () => {
+    renderSwitcher({ disabled: true });
 
-    const box = screen.getByRole("checkbox");
+    const box = screen.getByTestId("switcher-input");
 
-    expect(box).toBeChecked();
     expect(box).toBeDisabled();
   });
 
+  it("Применяется ли checked ", () => {
+    const handleChange = jest.fn();
+    renderSwitcher({ checked: true, onChange: handleChange });
+
+    const box = screen.getByTestId("switcher-input");
+
+    expect(box).toBeChecked();
+  });
+
   it("Вызывается ли onChange при клике", () => {
+    const handleChange = jest.fn();
     renderSwitcher({ onChange: handleChange });
 
-    const box = screen.getByRole("checkbox");
+    const box = screen.getByTestId("switcher-input");
 
     fireEvent.click(box);
     expect(handleChange).toHaveBeenCalled();

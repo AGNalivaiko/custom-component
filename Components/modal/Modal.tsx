@@ -1,19 +1,23 @@
-import styles from "./modal.module.css";
+import styles from "./Modal.module.css";
 import { createPortal } from "react-dom";
-import { ModalProps } from "./Modal.types";
+import { ModalProps } from "./types";
+import { FC } from "react";
 
-export function Modal({ open, onClose, children }: ModalProps): React.ReactElement | null {
-  if (!open) {
-    return null;
-  }
+export const Modal: FC<ModalProps> = ({ open, onClose, children }) => {
+  if (!open) return null;
 
   const container = document.getElementById("modal");
   if (!container) return null;
 
   return createPortal(
-    <div className={styles["modal-backdrop"]} onClick={onClose}>
-      <dialog open className={styles["modal-dialog"]}>
-        <button className={styles["modal-close"]} onClick={onClose}>
+    <div className={styles.modalBackdrop} onClick={onClose} data-testid="modal-backdrop">
+      <dialog
+        open
+        className={styles.modalDialog}
+        onClick={(e) => e.stopPropagation()}
+        data-testid="modal-dialog"
+      >
+        <button className={styles.modalClose} onClick={onClose} data-testid="modal-close">
           ✕
         </button>
         {children}
@@ -21,4 +25,4 @@ export function Modal({ open, onClose, children }: ModalProps): React.ReactEleme
     </div>,
     container,
   );
-}
+};

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Select } from "./Select";
-import { LABELS, OPTIONS, HELPERTEXT, VARIANTS } from "./Select.constants";
+import { DEFAULT, FILLED, DISABLED, ERROR } from "./constants";
 
 const renderSelect = (props = {}) => {
   return render(<Select {...props} />);
@@ -12,66 +12,73 @@ describe("Selects component", () => {
   });
 
   it("Рендерит label и variant=standard по умолчанию", () => {
-    const { container } = renderSelect({ label: LABELS.default, variants: VARIANTS.standard });
-    const wrapper = container.firstChild as HTMLElement;
+    renderSelect({ ...DEFAULT });
 
-    expect(wrapper).toHaveClass(VARIANTS.standard);
-    expect(screen.getByText(LABELS.default)).toBeInTheDocument();
+    const container = screen.getByTestId("select-container");
+    const label = screen.getByTestId("select-label");
+
+    expect(container).toHaveClass(DEFAULT.variant);
+    expect(label).toHaveTextContent(DEFAULT.label);
   });
 
   it("Открывает и закрывает список при клике", () => {
-    renderSelect({ label: LABELS.cities, options: OPTIONS.cities });
+    renderSelect({ ...DEFAULT });
 
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("select-listbox")).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByText("Города"));
-    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("select-input"));
+    expect(screen.getByTestId("select-listbox")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText("Города"));
-    expect(screen.queryByRole("list")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("select-input"));
+    expect(screen.queryByTestId("select-listbox")).not.toBeInTheDocument();
   });
 
   it("Выбирает значение при клике на опцию", () => {
-    renderSelect({ label: LABELS.fruits, options: OPTIONS.fruits });
+    renderSelect({ ...DEFAULT });
 
-    fireEvent.click(screen.getByText("Фрукты"));
+    fireEvent.click(screen.getByTestId("select-input"));
+    fireEvent.click(screen.getByTestId("select-option-1"));
 
-    fireEvent.click(screen.getByText("Банан"));
+    const selectedValue = screen.getByTestId("selected-value");
+    expect(selectedValue).toHaveTextContent("Option 1");
 
-    expect(screen.getByText("Банан")).toBeInTheDocument();
-
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("select-listbox")).not.toBeInTheDocument();
   });
 
-  it("Добавляет классы disabled и error, variant=filled", () => {
-    const { container } = renderSelect({
-      label: LABELS.test,
-      disabled: true,
-      error: true,
-      variant: "filled",
-    });
-
-    const wrapper = container.firstChild;
-    expect(wrapper).toHaveClass("disabled");
-    expect(wrapper).toHaveClass("error");
+  it("Изменяется при variant=filled", () => {
+    renderSelect({ ...FILLED });
+    const wrapper = screen.getByTestId("select-container");
     expect(wrapper).toHaveClass("filled");
   });
 
+  it("Добавляет класс error", () => {
+    renderSelect({ ...ERROR });
+    const wrapper = screen.getByTestId("select-container");
+    expect(wrapper).toHaveClass("error");
+  });
+
+  it("Добавляет класс disabled", () => {
+    renderSelect({ ...DISABLED });
+    const wrapper = screen.getByTestId("select-container");
+    expect(wrapper).toHaveClass("disabled");
+  });
+
   it("Показывает helperText", () => {
-    renderSelect({ label: LABELS.email, helperText: HELPERTEXT });
-    expect(screen.getByText(HELPERTEXT)).toBeInTheDocument();
+    renderSelect({ ...DEFAULT });
+    const helper = screen.getByTestId("select-helper");
+    expect(helper).toHaveTextContent(DEFAULT.helperText);
   });
 
   it("Не открывает список если disabled=true", () => {
-    renderSelect({ label: LABELS.countries, disabled: true, options: OPTIONS.countries });
+    renderSelect({ ...DISABLED });
 
-    fireEvent.click(screen.getByText("Страны"));
-
-    expect(screen.queryByRole("list")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("select-input"));
+    expect(screen.queryByTestId("select-listbox")).not.toBeInTheDocument();
   });
 
   it("Добавляет required метку", () => {
-    renderSelect({ label: "Поле", required: true });
-    expect(screen.getByText("Поле *")).toBeInTheDocument();
+    renderSelect({ ...DEFAULT, required: true });
+    const label = screen.getByTestId("select-label");
+    expect(label).toHaveTextContent("Choose option *");
   });
 });

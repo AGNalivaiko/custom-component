@@ -1,18 +1,14 @@
-import styles from "./swithcer.module.css";
-import { SwitcherProp } from "./Switcher.types";
+import styles from "./Swithcer.module.css";
+import { SwitcherProp } from "./types";
 import classNames from "classnames/bind";
+import { FC } from "react";
 
-export function Switcher({
-  checked,
-  onChange,
-  disabled = false,
-  ref,
-}: SwitcherProp): React.ReactElement {
-  const cx = classNames.bind(styles);
+const cx = classNames.bind(styles);
 
+export const Switcher: FC<SwitcherProp> = ({ checked, onChange, disabled = false, ref }) => {
   const className = cx("switch", {
-    disable: disabled,
-    checked: checked,
+    switchDisabled: disabled,
+    switchChecked: checked,
   });
 
   return (
@@ -23,9 +19,10 @@ export function Switcher({
         checked={checked}
         onChange={onChange}
         disabled={disabled}
-        className={styles["switch__input"]}
+        className={styles.switchInput}
+        data-testid="switcher-input"
       />
-      <span className={styles["switch__slider"]}></span>
+      <span className={styles.switchSlider} data-testid="switcher-slider"></span>
     </label>
   );
-}
+};

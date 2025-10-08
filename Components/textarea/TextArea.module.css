@@ -1,4 +1,4 @@
-.textfield-container {
+.textfieldContainer {
   position: relative;
   display: inline-block;
   width: 250px;
@@ -6,17 +6,17 @@
   font-family: sans-serif;
 }
 
-.textfield-container input {
+.textfieldContainer input {
   width: 100%;
   border: none;
   outline: none;
   font-size: 16px;
   transition:
     border-color 0.25s,
-    backgrounColor 0.25s;
+    backgroundColor 0.25s;
 }
 
-.textfield-container .helper-text {
+.textfieldContainer .helperText {
   display: block;
   margin-top: 4px;
   font-size: 12px;
@@ -54,20 +54,22 @@
   border-bottom: 2px solid #1976d2;
 }
 
-.textfield-small input {
+/* Sizes */
+.textfieldSmall input {
   font-size: 14px;
   padding: 12px 8px 4px 8px;
 }
-.textfield-medium input {
+.textfieldMedium input {
   font-size: 16px;
   padding: 16px 12px 8px 12px;
 }
-.textfield-large input {
+.textfieldLarge input {
   font-size: 18px;
   padding: 20px 14px 10px 14px;
 }
 
-.textfield-container label {
+/* Label */
+.textfieldContainer label {
   position: absolute;
   left: 12px;
   top: 16px;
@@ -78,35 +80,37 @@
   transition: 0.2s ease all;
 }
 
-.textfield-container.outlined label {
+.textfieldContainer.outlined label {
   background-color: white;
 }
 
-.textfield-container input:focus + label,
-.textfield-container label.filled {
+.textfieldContainer input:focus + label,
+.textfieldContainer label.filled {
   top: -8px;
   left: 8px;
   font-size: 12px;
   color: #1976d2;
 }
-.textfield-error input {
+
+/* States */
+.textfieldError input {
   border-color: #d32f2f !important;
 }
-.textfield-error label {
+.textfieldError label {
   color: #d32f2f !important;
 }
-.textfield-error .helper-text {
+.textfieldError .helperText {
   color: #d32f2f !important;
 }
 
-.textfield-disabled input {
+.textfieldDisabled input {
   background: #f0f0f0;
   color: #999;
   cursor: not-allowed;
 }
-.textfield-disabled label {
+.textfieldDisabled label {
   color: #aaa;
 }
-.textfield-disabled .helper-text {
+.textfieldDisabled .helperText {
   color: #aaa;
 }

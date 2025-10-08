@@ -5,13 +5,13 @@
   height: 32px;
 }
 
-.switch__input {
+.switchInput {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.switch__slider {
+.switchSlider {
   position: absolute;
   top: 50%;
   left: 0;
@@ -23,24 +23,25 @@
   transition: background-color 0.3s;
 }
 
-.switch__input:checked + .switch__slider {
+.switchInput:checked + .switchSlider {
   background-color: #90caf9;
 }
-.switch__input:checked + .switch__slider::before {
+
+.switchInput:checked + .switchSlider::before {
   transform: translate(17px, -50%);
   background-color: #1976d2;
 }
 
 /* props Checked */
-.switch.myChecked .switch__slider {
+.switchChecked .switchSlider {
   opacity: 0.3;
 }
-.switch.myChecked .switch__slider::before {
+.switchChecked .switchSlider::before {
   background-color: rgba(2, 162, 255, 0.932);
   box-shadow: none;
 }
 
-.switch__slider::before {
+.switchSlider::before {
   content: "";
   position: absolute;
   height: 22px;
@@ -56,11 +57,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.switch.disabled .switch__slider {
+.switchDisabled .switchSlider {
   background-color: #e0e0e0;
   cursor: not-allowed;
 }
-.switch.disabled .switch__slider::before {
+.switchDisabled .switchSlider::before {
   background-color: #bdbdbd;
   box-shadow: none;
 }

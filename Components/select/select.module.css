@@ -1,35 +1,35 @@
-.helper-text {
+.helperText {
   display: block;
   margin-top: 4px;
   font-size: 12px;
   color: #777;
 }
 
-.outlined .select-input {
+.outlined .selectInput {
   border: 2px solid #ccc;
 }
-.outlined .select-input:hover {
+.outlined .selectInput:hover {
   border-color: #1976d2;
 }
-.filled .select-input {
+.filled .selectInput {
   background: #f5f5f5;
   border-bottom: 2px solid transparent;
 }
-.standard .select-input {
+.standard .selectInput {
   border-bottom: 2px solid #ccc;
 }
 
-.error .select-input {
+.error .selectInput {
   border-color: #d32f2f !important;
 }
 .error label {
   color: #d32f2f !important;
 }
-.error .helper-text {
+.error .helperText {
   color: #d32f2f !important;
 }
 
-.select-dropdown {
+.selectDropdown {
   position: absolute;
   top: 100%;
   left: 0;
@@ -43,15 +43,16 @@
   z-index: 10;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.select-option {
+
+.selectOption {
   padding: 10px;
   cursor: pointer;
 }
-.select-option:hover {
+.selectOption:hover {
   background: #f0f0f0;
 }
 
-.disabled .select-input {
+.disabled .selectInput {
   background: #f0f0f0;
   color: #999;
   cursor: not-allowed;
@@ -60,14 +61,14 @@
   color: #aaa;
 }
 
-.select-container {
+.selectContainer {
   position: relative;
   width: 250px;
   font-family: sans-serif;
   margin: 20px;
 }
 
-.select-input {
+.selectInput {
   position: relative;
   padding: 16px 12px 8px 12px;
   cursor: pointer;
@@ -78,7 +79,7 @@
 }
 
 /* Label */
-.select-container label {
+.selectContainer label {
   position: absolute;
   left: 12px;
   top: 4px;
@@ -91,8 +92,8 @@
 }
 
 /* Floating */
-.select-container .filled + label,
-.select-container label.filled {
+.selectContainer .filled + label,
+.selectContainer label.filled {
   top: -8px;
   left: 8px;
   font-size: 12px;
@@ -106,6 +107,6 @@
   transform: translateY(-50%) rotate(0deg);
   transition: transform 0.3s;
 }
-.arrow.open {
+.arrowOpen {
   transform: translateY(-50%) rotate(180deg);
 }

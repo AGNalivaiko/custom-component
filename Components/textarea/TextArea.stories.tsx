@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { TextField } from "./TextField";
+import { TextField } from "./TextArea";
 
 const meta: Meta<typeof TextField> = {
   title: "UI/TextField",
@@ -10,7 +10,7 @@ const meta: Meta<typeof TextField> = {
       control: { type: "radio" },
       options: ["outlined", "filled", "standard"],
     },
-    size: {
+    sizeField: {
       control: { type: "radio" },
       options: ["small", "medium", "large"],
     },

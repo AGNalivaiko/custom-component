@@ -23,7 +23,7 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              modules: { auto: true, exportOnlyLocals: false, exportLocalsConvention: "asIs" },
+              modules: { auto: true, exportOnlyLocals: false, exportLocalsConvention: "camelCase" },
               esModule: false,
             },
           },

@@ -31,6 +31,14 @@ export default [
       ...prettier.configs.recommended.rules,
       "react/react-in-jsx-scope": "off",
       "prettier/prettier": "error",
+      "prettier/prettier": ["error"],
+      "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx", ".ts", ".tsx"] }],
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-props-no-spreading": "off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "import/prefer-default-export": "off",
     },
     settings: {
       react: {

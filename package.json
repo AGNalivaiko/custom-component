@@ -29,7 +29,7 @@
   "files": [
     "dist/**/*"
   ],
-  "author": "",
+  "author": "AGNalivaiko",
   "license": "ISC",
   "type": "commonjs",
   "homepage": "https://github.com/AGNalivaiko/custom-component",

@@ -1,33 +1,48 @@
-import styles from "./button.module.css";
-import ClassNames from "classnames/bind";
-import { ButtonsProp } from "./Button.types";
+import styles from "./Button.module.css";
+import classNames from "classnames/bind";
+import { ButtonsProp } from "./types";
+import { useMemo } from "react";
+import { FC } from "react";
 
-export function Button({
+const cx = classNames.bind(styles);
+
+export const Button: FC<ButtonsProp> = ({
   variant = "contained",
   size = "medium",
   color = "primary",
   disabled = false,
   loading = false,
   children,
-  onClick,
+  onClick: clickFromProps,
   ...rest
-}: ButtonsProp): React.ReactElement {
-  const cx = ClassNames.bind(styles);
+}) => {
+  const className = cx(
+    "btn",
+    `btn${variant.charAt(0).toUpperCase() + variant.slice(1)}`,
+    `btn${size.charAt(0).toUpperCase() + size.slice(1)}`,
+    {
+      [`${color}`]: color !== "primary",
+      btnDisabled: disabled,
+    },
+  );
 
-  const className = cx("btn", `btn-${variant}`, `btn-${size}`, {
-    [`${color}`]: color !== "primary",
-    "btn-disabled": disabled,
-  });
+  const isActive = disabled || loading;
+  const onClick = isActive ? undefined : clickFromProps;
+  const content = useMemo(
+    () =>
+      loading ? <span className={styles.btnSpinner} data-testid="button-spinner" /> : children,
+    [loading, children],
+  );
 
   return (
     <button
       className={className}
-      disabled={disabled || loading}
-      onClick={disabled || loading ? undefined : onClick}
+      disabled={isActive}
+      onClick={onClick}
+      data-testid="button-element"
       {...rest}
     >
-      {loading && <span className={styles["btn-spinner"]} />}
-      {!loading && children}
+      {content}
     </button>
   );
-}
+};

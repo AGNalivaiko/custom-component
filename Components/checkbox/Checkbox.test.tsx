@@ -1,46 +1,57 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Checkbox } from ".";
-import { CONSTANTS } from "./Checkbox.constants";
+import { DEFAULT_CLASSES, CUSTOM_PROPS, CUSTOM_CLASSES } from "./constants";
 
 const renderCheckbox = (prop = {}) => {
   render(<Checkbox {...prop} />);
 };
 
 describe("Checkbox component", () => {
-  const handleChange = jest.fn();
-
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("Рисуется ли стандартный чекбокс", () => {
-    renderCheckbox({ ...CONSTANTS.DEFAULT_CLASSES });
-    expect(screen.getByText("enter your label")).toBeInTheDocument();
+    renderCheckbox({ ...DEFAULT_CLASSES });
+    const checkbox = screen.getByTestId("checkbox-text");
+    expect(checkbox).toBeInTheDocument();
   });
 
   it("Применяет классы в зависимости от variant, size, color", () => {
-    renderCheckbox({ ...CONSTANTS.CUSTOM_PROPS });
-    expect(screen.getByLabelText("test").closest("label")).toHaveClass(...CONSTANTS.CUSTOM_CLASSES);
+    renderCheckbox({ ...CUSTOM_PROPS });
+    const label = screen.getByTestId("checkbox-label");
+    expect(label).toHaveClass(...CUSTOM_CLASSES);
   });
 
-  it("Применяется disabled, required, checked, error", () => {
-    renderCheckbox({
-      disabled: true,
-      required: true,
-      checked: true,
-      error: true,
-      label: "testing",
-    });
-    const checkbox = screen.getByRole("checkbox", { name: /testing/i });
-
-    expect(checkbox).toBeChecked();
+  it("Применяется disabled", () => {
+    renderCheckbox({ disabled: true });
+    const checkbox = screen.getByTestId("checkbox-input");
     expect(checkbox).toBeDisabled();
+  });
+
+  it("Применяется ли required при required=true", () => {
+    renderCheckbox({ required: true });
+    const checkbox = screen.getByTestId("checkbox-input");
     expect(checkbox).toBeRequired();
   });
 
+  it("Применяется ли checked при checked=true", () => {
+    const handleChange = jest.fn();
+    renderCheckbox({ checked: true, onChange: handleChange });
+    const checkbox = screen.getByTestId("checkbox-input");
+    expect(checkbox).toBeChecked();
+  });
+
+  it("Применяется ли error при error=true", () => {
+    renderCheckbox({ error: true });
+    const label = screen.getByTestId("checkbox-label");
+    expect(label).toHaveClass("checkboxErrorState");
+  });
+
   it("Работает ли onChange", () => {
+    const handleChange = jest.fn();
     renderCheckbox({ onChange: handleChange });
-    const checkbox = screen.getByRole("checkbox");
+    const checkbox = screen.getByTestId("checkbox-input");
 
     fireEvent.click(checkbox);
     expect(handleChange).toHaveBeenCalled();

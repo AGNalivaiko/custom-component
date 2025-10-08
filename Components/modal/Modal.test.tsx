@@ -20,25 +20,39 @@ describe("Modal component", () => {
 
   it("Рендерится с children", () => {
     render(<Modal open={true}>test modal</Modal>);
-    const modal = screen.getByText("test modal");
-    expect(modal).toBeInTheDocument();
+    const modalDialog = screen.getByTestId("modal-dialog");
+    expect(modalDialog).toBeInTheDocument();
+    expect(modalDialog).toHaveTextContent("test modal");
   });
 
   it("рендерится если open=true", () => {
     render(<Modal open={true}>test modal</Modal>);
-    const modal = screen.getByText("test modal");
-    expect(modal).toBeInTheDocument();
+    const modalBackdrop = screen.getByTestId("modal-backdrop");
+    expect(modalBackdrop).toBeInTheDocument();
   });
 
-  it("Закрывается по клику", () => {
+  it("Закрывается по клику на кнопку закрытия", () => {
     render(
       <Modal open={true} onClose={handleClick}>
         test
       </Modal>,
     );
 
-    const closeButton = screen.getByRole("button");
+    const closeButton = screen.getByTestId("modal-close");
     fireEvent.click(closeButton);
+
+    expect(handleClick).toHaveBeenCalled();
+  });
+
+  it("Закрывается по клику на фон", () => {
+    render(
+      <Modal open={true} onClose={handleClick}>
+        test
+      </Modal>,
+    );
+
+    const backdrop = screen.getByTestId("modal-backdrop");
+    fireEvent.click(backdrop);
 
     expect(handleClick).toHaveBeenCalled();
   });

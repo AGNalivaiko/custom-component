@@ -1,9 +1,12 @@
-import styles from "./select.module.css";
+import styles from "./Select.module.css";
 import { useState } from "react";
-import { SelectProps } from "./Select.types";
+import { SelectProps } from "./types";
 import classNames from "classnames/bind";
+import { FC } from "react";
 
-export function Select({
+const cx = classNames.bind(styles);
+
+export const Select: FC<SelectProps> = ({
   label = "Select",
   options = [],
   variant = "standard",
@@ -11,64 +14,65 @@ export function Select({
   required = false,
   error = false,
   helperText = "",
-}: SelectProps): React.ReactElement {
+}) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string>("");
-  const cx = classNames.bind(styles);
 
-  const classNameSelectContainer = cx("select-container", `select-container-${variant}`, {
+  const classNameSelectContainer = cx("selectContainer", {
     filled: variant === "filled",
-    disabled: disabled,
-    error: error,
+    outlined: variant === "outlined",
+    standard: variant === "standard",
+    disabled,
+    error,
   });
-  const classNameSelectedValue = cx("selected-value", { filled: selected });
-  const classNameArrow = cx("arrow", { open: open });
 
-  function toggleOpen() {
-    if (!disabled) {
-      setOpen(!open);
-    }
-  }
+  const classNameArrow = cx("arrow", { arrowOpen: open });
 
-  function hadleSelect(value: string) {
+  const toggleOpen = () => {
+    if (!disabled) setOpen(!open);
+  };
+
+  const handleSelect = (value: string) => {
     setSelected(value);
     setOpen(false);
-  }
+  };
 
   return (
-    <div className={classNameSelectContainer}>
+    <div className={classNameSelectContainer} data-testid="select-container">
       <div
-        className={styles["select-input"]}
+        className={styles.selectInput}
         onClick={toggleOpen}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            toggleOpen();
-          }
+          if (e.key === "Enter" || e.key === " ") toggleOpen();
         }}
+        data-testid="select-input"
       >
-        <span className={classNameSelectedValue}>{selected || ""}</span>
-        <label className={selected ? styles.filled : ""}>
+        <span className={cx("selectedValue", { filled: selected })} data-testid="selected-value">
+          {selected || ""}
+        </span>
+        <label className={selected ? styles.filled : ""} data-testid="select-label">
           {label} {required ? "*" : ""}
         </label>
-        <span className={classNameArrow}>▾</span>
+        <span className={classNameArrow} data-testid="select-arrow">
+          ▾
+        </span>
       </div>
 
       {open && (
-        <ul className={styles["select-dropdown"]} role="listbox">
+        <ul className={styles.selectDropdown} role="listbox" data-testid="select-listbox">
           {options.map((opt) => (
             <li
               key={opt.value}
-              className={styles["select-option"]}
-              onClick={() => hadleSelect(opt.label)}
+              className={styles.selectOption}
+              onClick={() => handleSelect(opt.label)}
               role="option"
               tabIndex={0}
               onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  hadleSelect(opt.label);
-                }
+                if (e.key === "Enter" || e.key === " ") handleSelect(opt.label);
               }}
+              data-testid={`select-option-${opt.value}`}
             >
               {opt.label}
             </li>
@@ -76,7 +80,11 @@ export function Select({
         </ul>
       )}
 
-      {helperText && <span className={styles["helper-text"]}>{helperText}</span>}
+      {helperText && (
+        <span className={styles.helperText} data-testid="select-helper">
+          {helperText}
+        </span>
+      )}
     </div>
   );
-}
+};

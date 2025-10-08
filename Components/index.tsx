@@ -1,6 +1,6 @@
-export { Button } from "./button/index";
-export { Checkbox } from "./checkbox/index";
-export { Modal } from "./modal/index";
-export { Select } from "./select/index";
-export { Switcher } from "./switcher/index";
-export { TextField } from "./textfield/index";
+export { Button } from "./button";
+export { Checkbox } from "./checkbox";
+export { Modal } from "./modal";
+export { Select } from "./select";
+export { Switcher } from "./switcher";
+export { TextField } from "./textarea";

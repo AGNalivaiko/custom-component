@@ -53,7 +53,7 @@ export const Loading: Story = {
 export const Success: Story = {
   args: {
     children: "Success",
-    color: "success",
+    color: "primary",
     variant: "outlined",
   },
 };
