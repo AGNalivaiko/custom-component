@@ -6,8 +6,15 @@ import { DATA_TESTID } from './constants';
 
 const cx = classNames.bind(styles);
 
-export const Switcher: FC<SwitcherProp> = ({ checked, onChange, disabled = false, ref }) => {
-  const className = cx('switch', {
+export const Switcher: FC<SwitcherProp> = ({
+  checked,
+  onChange,
+  disabled = false,
+  ref,
+  style,
+  classNames
+}) => {
+  const className = cx('switch', classNames, {
     switchDisabled: disabled,
     switchChecked: checked
   });
@@ -22,6 +29,7 @@ export const Switcher: FC<SwitcherProp> = ({ checked, onChange, disabled = false
         disabled={disabled}
         className={styles.switchInput}
         data-testid={DATA_TESTID.input}
+        style={style}
       />
       <span className={styles.switchSlider} data-testid={DATA_TESTID.slider}></span>
     </label>

@@ -3,13 +3,13 @@ import classNames from 'classnames/bind';
 import { TextFieldProp } from './types';
 import { ChangeEvent, useCallback, useState } from 'react';
 import { FC } from 'react';
-import { DATA_TESTID } from './constants';
+import { DATA_TESTID, DEFAULT_PROPS } from './constants';
 
 const cx = classNames.bind(styles);
 
 export const TextField: FC<TextFieldProp> = ({
-  variant = 'outlined',
-  sizeField = 'medium',
+  variant = DEFAULT_PROPS.outlined,
+  sizeField = DEFAULT_PROPS.medium,
   label = '',
   required = false,
   disabled = false,
@@ -18,7 +18,9 @@ export const TextField: FC<TextFieldProp> = ({
   helperText = '',
   value,
   onChange: onChangeFromProps,
-  ref
+  ref,
+  style,
+  classNames
 }: TextFieldProp) => {
   const [valueState, setValueState] = useState(value ?? '');
 
@@ -26,6 +28,7 @@ export const TextField: FC<TextFieldProp> = ({
     'textfieldContainer',
     `${variant}`,
     `textfield${sizeField.charAt(0).toUpperCase() + sizeField.slice(1)}`,
+    classNames,
     {
       textfieldDisabled: disabled,
       textfieldError: error
@@ -52,6 +55,7 @@ export const TextField: FC<TextFieldProp> = ({
         readOnly={readOnly}
         required={required}
         data-testid={DATA_TESTID.input}
+        style={style}
       />
       {label && (
         <label

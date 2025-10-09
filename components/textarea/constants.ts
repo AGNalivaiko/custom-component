@@ -28,3 +28,8 @@ export const DATA_TESTID = {
   label: 'textfield-label',
   helperText: 'textfield-helper'
 };
+
+export const DEFAULT_PROPS = {
+  outlined: 'outlined',
+  medium: 'medium'
+} as const;

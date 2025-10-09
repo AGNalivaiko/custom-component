@@ -11,4 +11,5 @@ export type ButtonProp = ComponentPropsWithRef<'button'> & {
   size?: ButtonSizes;
   color?: ButtonColors;
   loading?: boolean;
+  classNames?: string;
 };

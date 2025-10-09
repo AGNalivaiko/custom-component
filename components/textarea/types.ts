@@ -10,4 +10,5 @@ export type TextFieldProp = ComponentPropsWithRef<'input'> & {
   error?: boolean;
   label?: string;
   onChange?: (value: ReactNode, e: ChangeEvent<HTMLInputElement>) => void;
+  classNames?: string;
 };

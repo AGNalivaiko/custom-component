@@ -3,25 +3,32 @@ import classNames from 'classnames/bind';
 import { ButtonProp } from './types';
 import { useMemo } from 'react';
 import { FC } from 'react';
-import { DATA_TESTID } from './constants';
+import { DATA_TESTID, DEFAULT_PROPS } from './constants';
 import { generateClassName } from '@helpers';
 
 const cx = classNames.bind(styles);
 
 export const Button: FC<ButtonProp> = ({
-  variant = 'contained',
-  size = 'medium',
-  color = 'primary',
+  variant = DEFAULT_PROPS.contained,
+  size = DEFAULT_PROPS.medium,
+  color = DEFAULT_PROPS.primary,
   disabled = false,
   loading = false,
   children,
   onClick: clickFromProps,
-  ...rest
+  style,
+  classNames
 }) => {
-  const className = cx('btn', generateClassName('btn', variant), generateClassName('btn', size), {
-    [color]: color !== 'primary',
-    btnDisabled: disabled
-  });
+  const className = cx(
+    'btn',
+    generateClassName('btn', variant),
+    generateClassName('btn', size),
+    {
+      [color]: color !== 'primary',
+      btnDisabled: disabled
+    },
+    classNames
+  );
 
   const isActive = disabled || loading;
   const onClick = isActive ? undefined : clickFromProps;
@@ -36,8 +43,8 @@ export const Button: FC<ButtonProp> = ({
       className={className}
       disabled={isActive}
       onClick={onClick}
+      style={style}
       data-testid={DATA_TESTID.element}
-      {...rest}
     >
       {content}
     </button>

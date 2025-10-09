@@ -3,27 +3,30 @@ import classNames from 'classnames/bind';
 import { CustomCheckboxProps } from './types';
 import { FC } from 'react';
 import { generateClassName } from '@helpers';
-import { DATA_TESTID } from './constants';
+import { DATA_TESTID, DEFAULT_PROPS } from './constants';
 
 const cx = classNames.bind(styles);
 
 export const CustomCheckbox: FC<CustomCheckboxProps> = ({
-  variant = 'outlined',
-  sizeCheckbox = 'medium',
-  color = 'primary',
-  label = 'enter your label',
+  variant = DEFAULT_PROPS.outlined,
+  sizeCheckbox = DEFAULT_PROPS.medium,
+  color = DEFAULT_PROPS.primary,
+  label = DEFAULT_PROPS.default_label,
   disabled = false,
   required = false,
   error = false,
   checked,
   onChange,
-  ref
+  ref,
+  style,
+  classNames
 }) => {
   const className = cx(
     'checkbox',
     generateClassName('checkbox', variant),
     generateClassName('checkbox', sizeCheckbox),
     generateClassName('checkbox', color),
+    classNames,
     {
       checkboxDisabled: disabled,
       checkboxErrorState: error,
@@ -41,6 +44,7 @@ export const CustomCheckbox: FC<CustomCheckboxProps> = ({
         ref={ref}
         data-testid={DATA_TESTID.input}
         type='checkbox'
+        style={style}
       />
       {label && (
         <span className={styles.checkboxLabel} data-testid={DATA_TESTID.text}>

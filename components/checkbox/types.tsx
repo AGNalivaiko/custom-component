@@ -12,4 +12,5 @@ export type CustomCheckboxProps = ComponentPropsWithRef<'input'> & {
   color?: CheckboxColors;
   error?: boolean;
   label?: string;
+  classNames?: string;
 };

@@ -5,6 +5,13 @@ export const DEFAULT_CLASSES = {
   label: 'enter your label'
 };
 
+export const DEFAULT_PROPS = {
+  outlined: 'outlined',
+  medium: 'medium,',
+  default_label: 'enter your label',
+  primary: 'primary'
+};
+
 export const CUSTOM_PROPS = {
   variant: 'contained',
   sizeCheckbox: 'large',
