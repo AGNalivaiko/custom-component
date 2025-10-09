@@ -1,0 +1,21 @@
+:root {
+  --error: #dc3545;
+  --error-border: #dc3545;
+  --error-background-hover: #b02a37;
+  --error-required-mark: #d32f2f;
+
+  --success: #2e7d32;
+
+  --primary: #1976d2;
+
+  --default-background-color: rgba(2, 141, 255, 0.977);
+  --default-background-hover: #115293;
+
+  --checkbox-checked-background: rgba(0, 0, 0, 0.05);
+
+  --button-variantText-color-text: rgba(2, 141, 255, 0.977);
+  --button-variantOutlined-color-text: #007bff;
+  --button-variantOutlined-color-border: #007bff;
+  --button-secondary: #6c757d;
+  --button-secondary-hover: #565e64;
+}

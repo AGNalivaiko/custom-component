@@ -14,8 +14,12 @@
     "skipLibCheck": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-    "types": ["jest", "@testing-library/jest-dom"]
+    "types": ["jest", "@testing-library/jest-dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@helpers": ["helpers/index.ts"]
+    }
   },
-  "include": ["Components/**/*", "Components/global.d.ts"],
+  "include": ["components/**/*", "helpers/**/*", "components/global.d.ts"],
   "exclude": ["dist", "node_modules"]
 }

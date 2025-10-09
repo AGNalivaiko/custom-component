@@ -1,19 +1,19 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Select } from "./Select";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Select } from './Select';
 
 const meta: Meta<typeof Select> = {
-  title: "UI/Selects",
+  title: 'UI/Selects',
   component: Select,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     variant: {
-      control: { type: "radio" },
-      options: ["outlined", "filled", "standard"],
+      control: { type: 'radio' },
+      options: ['outlined', 'filled', 'standard']
     },
-    disabled: { control: "boolean" },
-    required: { control: "boolean" },
-    error: { control: "boolean" },
-  },
+    disabled: { control: 'boolean' },
+    required: { control: 'boolean' },
+    error: { control: 'boolean' }
+  }
 };
 
 export default meta;
@@ -21,42 +21,42 @@ type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
   args: {
-    label: "Choose option",
+    label: 'Choose option',
     options: [
-      { label: "Option 1", value: "1" },
-      { label: "Option 2", value: "2" },
-      { label: "Option 3", value: "3" },
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+      { label: 'Option 3', value: '3' }
     ],
-    variant: "standard",
-    helperText: "Please select an option",
-  },
+    variant: 'standard',
+    helperText: 'Please select an option'
+  }
 };
 
 export const Outlined: Story = {
   args: {
     ...Default.args,
-    variant: "outlined",
-  },
+    variant: 'outlined'
+  }
 };
 
 export const Filled: Story = {
   args: {
     ...Default.args,
-    variant: "filled",
-  },
+    variant: 'filled'
+  }
 };
 
 export const Disabled: Story = {
   args: {
     ...Default.args,
-    disabled: true,
-  },
+    disabled: true
+  }
 };
 
 export const Error: Story = {
   args: {
     ...Default.args,
     error: true,
-    helperText: "Something went wrong",
-  },
+    helperText: 'Something went wrong'
+  }
 };

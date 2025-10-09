@@ -3,7 +3,7 @@ type Option = {
   value: string;
 };
 
-type SelectVariants = "outlined" | "filled" | "standard";
+type SelectVariants = 'outlined' | 'filled' | 'standard';
 
 export type SelectProps = {
   variant?: SelectVariants;

@@ -1,59 +1,59 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { Checkbox } from ".";
-import { DEFAULT_CLASSES, CUSTOM_PROPS, CUSTOM_CLASSES } from "./constants";
+import { fireEvent, render, screen } from '@testing-library/react';
+import { Checkbox } from '.';
+import { DEFAULT_CLASSES, CUSTOM_PROPS, CUSTOM_CLASSES } from './constants';
 
 const renderCheckbox = (prop = {}) => {
   render(<Checkbox {...prop} />);
 };
 
-describe("Checkbox component", () => {
+describe('Checkbox component', () => {
+  const onChange = jest.fn();
+
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("Рисуется ли стандартный чекбокс", () => {
+  it('Рендерится чекбокс с default стилями', () => {
     renderCheckbox({ ...DEFAULT_CLASSES });
-    const checkbox = screen.getByTestId("checkbox-text");
+    const checkbox = screen.getByTestId('checkbox-text');
     expect(checkbox).toBeInTheDocument();
   });
 
-  it("Применяет классы в зависимости от variant, size, color", () => {
+  it('Изменяется ли стиль чекбокса при рендере с кастомными пропсами', () => {
     renderCheckbox({ ...CUSTOM_PROPS });
-    const label = screen.getByTestId("checkbox-label");
+    const label = screen.getByTestId('checkbox-label');
     expect(label).toHaveClass(...CUSTOM_CLASSES);
   });
 
-  it("Применяется disabled", () => {
+  it('При переданном в пропсах disabled=true чекбокс должен иметь класс checkboxDisabled', () => {
     renderCheckbox({ disabled: true });
-    const checkbox = screen.getByTestId("checkbox-input");
+    const checkbox = screen.getByTestId('checkbox-input');
     expect(checkbox).toBeDisabled();
   });
 
-  it("Применяется ли required при required=true", () => {
+  it('При переданном required=true чекбокс должен быть required', () => {
     renderCheckbox({ required: true });
-    const checkbox = screen.getByTestId("checkbox-input");
+    const checkbox = screen.getByTestId('checkbox-input');
     expect(checkbox).toBeRequired();
   });
 
-  it("Применяется ли checked при checked=true", () => {
-    const handleChange = jest.fn();
-    renderCheckbox({ checked: true, onChange: handleChange });
-    const checkbox = screen.getByTestId("checkbox-input");
+  it('При переданном checked=true label должен быть checked', () => {
+    renderCheckbox({ checked: true, onChange });
+    const checkbox = screen.getByTestId('checkbox-input');
     expect(checkbox).toBeChecked();
   });
 
-  it("Применяется ли error при error=true", () => {
+  it('При передачи error=true label должен иметь класс checkboxErrorState', () => {
     renderCheckbox({ error: true });
-    const label = screen.getByTestId("checkbox-label");
-    expect(label).toHaveClass("checkboxErrorState");
+    const label = screen.getByTestId('checkbox-label');
+    expect(label).toHaveClass('checkboxErrorState');
   });
 
-  it("Работает ли onChange", () => {
-    const handleChange = jest.fn();
-    renderCheckbox({ onChange: handleChange });
-    const checkbox = screen.getByTestId("checkbox-input");
+  it('При клике на чекбокс он должен применять событие onChange, менять свое состояние с on на off и наоборот', () => {
+    renderCheckbox({ onChange });
+    const checkbox = screen.getByTestId('checkbox-input');
 
     fireEvent.click(checkbox);
-    expect(handleChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalled();
   });
 });

@@ -1,34 +1,35 @@
-import styles from "./TextArea.module.css";
-import classNames from "classnames/bind";
-import { TextFieldProp } from "./types";
-import { ChangeEvent, useCallback, useState } from "react";
-import { FC } from "react";
+import styles from './TextArea.module.css';
+import classNames from 'classnames/bind';
+import { TextFieldProp } from './types';
+import { ChangeEvent, useCallback, useState } from 'react';
+import { FC } from 'react';
+import { DATA_TESTID } from './constants';
 
 const cx = classNames.bind(styles);
 
 export const TextField: FC<TextFieldProp> = ({
-  variant = "outlined",
-  sizeField = "medium",
-  label = "",
+  variant = 'outlined',
+  sizeField = 'medium',
+  label = '',
   required = false,
   disabled = false,
   readOnly = false,
   error = false,
-  helperText = "",
+  helperText = '',
   value,
   onChange: onChangeFromProps,
-  ref,
+  ref
 }: TextFieldProp) => {
-  const [valueState, setValueState] = useState(value ?? "");
+  const [valueState, setValueState] = useState(value ?? '');
 
   const className = cx(
-    "textfieldContainer",
+    'textfieldContainer',
     `${variant}`,
     `textfield${sizeField.charAt(0).toUpperCase() + sizeField.slice(1)}`,
     {
       textfieldDisabled: disabled,
-      textfieldError: error,
-    },
+      textfieldError: error
+    }
   );
 
   const onChange = useCallback(
@@ -37,11 +38,11 @@ export const TextField: FC<TextFieldProp> = ({
       setValueState(val);
       onChangeFromProps?.(val, e);
     },
-    [onChangeFromProps],
+    [onChangeFromProps]
   );
 
   return (
-    <div className={className} data-testid="textfield-container">
+    <div className={className} data-testid={DATA_TESTID.container}>
       <input
         ref={ref}
         id={`textfield-${label}`}
@@ -50,19 +51,19 @@ export const TextField: FC<TextFieldProp> = ({
         disabled={disabled}
         readOnly={readOnly}
         required={required}
-        data-testid="textfield-input"
+        data-testid={DATA_TESTID.input}
       />
       {label && (
         <label
           htmlFor={`textfield-${label}`}
           className={cx({ filled: !!valueState })}
-          data-testid="textfield-label"
+          data-testid={DATA_TESTID.label}
         >
-          {label} {required ? "*" : ""}
+          {label} {required ? '*' : ''}
         </label>
       )}
       {helperText && (
-        <span className={styles.helperText} data-testid="textfield-helper">
+        <span className={styles.helperText} data-testid={DATA_TESTID.helperText}>
           {helperText}
         </span>
       )}

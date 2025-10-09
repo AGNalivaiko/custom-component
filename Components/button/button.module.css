@@ -1,3 +1,5 @@
+@import '../../styles/colors.css';
+
 .btn {
   font-family: Arial, sans-serif;
   border-radius: 4px;
@@ -6,13 +8,13 @@
   text-align: center;
   padding: 5px;
   font-size: 16px;
-  background-color: rgba(2, 141, 255, 0.977);
+  background-color: var(--default-background-color);
   color: white;
 }
 
 .btnText {
   background-color: white;
-  color: rgba(2, 141, 255, 0.977);
+  color: var(--button-variantText-color-text);
   font-weight: bold;
 }
 .btnText:hover {
@@ -20,36 +22,36 @@
 }
 
 .btnContained {
-  background-color: #1976d2;
+  background-color: var(--default-background-color);
   color: white;
   padding: 8px 16px;
   border: none;
 }
 .btnContained:hover {
-  background-color: #115293;
+  background-color: var(--default-background-hover);
 }
 
 .btnOutlined {
   background-color: transparent;
-  color: #007bff;
-  border: 2px solid #007bff;
+  color: var(--button-variantOutlined-color-text);
+  border: 2px solid var(--button-variantOutlined-color-border);
   font-weight: bold;
 }
 .btnOutlined:hover {
-  background-color: #007bff;
+  background-color: var(--default-background-hover);
   color: white;
 }
 
 .btnContainedError {
-  background-color: #dc3545;
+  background-color: var(--error-color);
   color: white;
 }
 .btnContainedError:hover:not(:disabled) {
-  background-color: #b02a37;
+  background-color: var(--error-border-hover);
 }
 
 .btnContainedSuccess {
-  background-color: #28a745;
+  background-color: var(--success);
   color: white;
 }
 .btnContainedSuccess:hover:not(:disabled) {
@@ -57,56 +59,56 @@
 }
 
 .btnContainedSecondary {
-  background-color: #6c757d;
+  background-color: var(--button-secondary);
   color: white;
 }
 .btnContainedSecondary:hover:not(:disabled) {
-  background-color: #565e64;
+  background-color: var(--button-secondary-hover);
 }
 
 .btnOutlinedError {
-  border-color: #dc3545;
-  color: #dc3545;
+  border-color: var(--error);
+  color: var(--error);
 }
 .btnOutlinedError:hover:not(:disabled) {
-  background-color: #dc3545;
+  background-color: var(--error);
   color: white;
 }
 
 .btnOutlinedSuccess {
-  border-color: #28a745;
-  color: #28a745;
+  border-color: var(--success);
+  color: var(--success);
 }
 .btnOutlinedSuccess:hover:not(:disabled) {
-  background-color: #28a745;
+  background-color: var(--success);
   color: white;
 }
 
 .btnOutlinedSecondary {
-  border-color: #6c757d;
-  color: #6c757d;
+  border-color: var(--button-secondary);
+  color: var(--button-secondary);
 }
 .btnOutlinedSecondary:hover:not(:disabled) {
-  background-color: #6c757d;
+  background-color: var(--button-secondary);
   color: white;
 }
 
 .btnTextError {
-  color: #dc3545;
+  color: var(--error);
 }
 .btnTextError:hover:not(:disabled) {
   background-color: rgba(220, 53, 69, 0.1);
 }
 
 .btnTextSuccess {
-  color: #28a745;
+  color: var(--success);
 }
 .btnTextSuccess:hover:not(:disabled) {
   background-color: rgba(40, 167, 69, 0.1);
 }
 
 .btnTextSecondary {
-  color: #6c757d;
+  color: var(--button-secondary);
 }
 .btnTextSecondary:hover:not(:disabled) {
   background-color: rgba(108, 117, 125, 0.1);

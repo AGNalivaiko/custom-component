@@ -1,23 +1,30 @@
 export const LABELS = {
-  default: "Username",
-  test: "Test",
+  default: 'Username',
+  test: 'Test'
 };
 
-export const HELPERS = "Enter your name";
+export const HELPERS = 'Enter your name';
 
 export const VARIANTS = {
-  standard: "standard",
-  filled: "filled",
-  outlined: "outlined",
+  standard: 'standard',
+  filled: 'filled',
+  outlined: 'outlined'
 };
 
 export const SIZES = {
-  small: "Small",
-  medium: "Medium",
+  small: 'Small',
+  medium: 'Medium'
 };
 
 export const CLASSES = {
-  disabled: "textfieldDisabled",
-  error: "textfieldError",
-  container: "textfieldContainer",
+  disabled: 'textfieldDisabled',
+  error: 'textfieldError',
+  container: 'textfieldContainer'
+};
+
+export const DATA_TESTID = {
+  container: 'textfield-container',
+  input: 'textfield-input',
+  label: 'textfield-label',
+  helperText: 'textfield-helper'
 };

@@ -1,2 +1,2 @@
-import "@testing-library/jest-dom";
+import '@testing-library/jest-dom';
 //# sourceMappingURL=jest.setup.d.ts.map

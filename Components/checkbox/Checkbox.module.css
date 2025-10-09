@@ -1,3 +1,5 @@
+@import '../../styles/colors.css';
+
 .checkbox {
   display: inline-flex;
   align-items: center;
@@ -6,7 +8,7 @@
   font-family: sans-serif;
 }
 
-.checkbox input[type="checkbox"] {
+.checkbox input[type='checkbox'] {
   appearance: none;
   width: 18px;
   height: 18px;
@@ -18,13 +20,13 @@
   transition: all 0.2s ease;
 }
 
-.checkbox input[type="checkbox"]:checked {
+.checkbox input[type='checkbox']:checked {
   background-color: currentColor;
   border-color: currentColor;
 }
 
-.checkbox input[type="checkbox"]:checked::after {
-  content: "";
+.checkbox input[type='checkbox']:checked::after {
+  content: '';
   position: absolute;
   left: 4px;
   top: 0px;
@@ -43,7 +45,7 @@
 .checkboxContained {
   padding: 6px 10px;
   border-radius: 6px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--checkbox-checked-background);
 }
 
 .checkboxOutlined {
@@ -58,7 +60,7 @@
 }
 
 .checkboxErrorState {
-  outline: 1px solid #d32f2f;
+  outline: 1px solid var(--error);
 }
 
 .checkboxLabel {
@@ -66,32 +68,32 @@
 }
 
 .checkboxRequiredMark {
-  color: #d32f2f;
+  color: var(--error-required-mark);
 }
 
-.checkboxSmall input[type="checkbox"] {
+.checkboxSmall input[type='checkbox'] {
   width: 14px;
   height: 14px;
 }
 
-.checkboxMedium input[type="checkbox"] {
+.checkboxMedium input[type='checkbox'] {
   width: 18px;
   height: 18px;
 }
 
-.checkboxLarge input[type="checkbox"] {
+.checkboxLarge input[type='checkbox'] {
   width: 22px;
   height: 22px;
 }
 
 .checkboxPrimary {
-  color: #1976d2;
+  color: var(--primary);
 }
 
 .checkboxSuccess {
-  color: #2e7d32;
+  color: var(--success);
 }
 
 .checkboxError {
-  color: #d32f2f;
+  color: var(--error);
 }

@@ -1,9 +1,9 @@
-import { ChangeEvent, ComponentPropsWithRef, ReactNode } from "react";
+import { ChangeEvent, ComponentPropsWithRef, ReactNode } from 'react';
 
-type TextFieldVariants = "filled" | "standard" | "outlined";
-type TextFieldSizes = "small" | "medium" | "standard";
+type TextFieldVariants = 'filled' | 'standard' | 'outlined';
+type TextFieldSizes = 'small' | 'medium' | 'standard';
 
-export type TextFieldProp = ComponentPropsWithRef<"input"> & {
+export type TextFieldProp = ComponentPropsWithRef<'input'> & {
   variant?: TextFieldVariants;
   sizeField?: TextFieldSizes;
   helperText?: string;

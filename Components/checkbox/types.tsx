@@ -1,12 +1,12 @@
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef } from 'react';
 
-type CheckboxVariants = "text" | "contained" | "outlined";
+type CheckboxVariants = 'text' | 'contained' | 'outlined';
 
-type CheckboxSizes = "small" | "medium" | "large";
+type CheckboxSizes = 'small' | 'medium' | 'large';
 
-type CheckboxColors = "primary" | "success" | "error";
+type CheckboxColors = 'primary' | 'success' | 'error';
 
-export type CustomCheckboxProps = ComponentPropsWithRef<"input"> & {
+export type CustomCheckboxProps = ComponentPropsWithRef<'input'> & {
   variant?: CheckboxVariants;
   sizeCheckbox?: CheckboxSizes;
   color?: CheckboxColors;

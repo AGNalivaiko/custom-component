@@ -1,36 +1,36 @@
-import styles from "./Select.module.css";
-import { useState } from "react";
-import { SelectProps } from "./types";
-import classNames from "classnames/bind";
-import { FC } from "react";
+import styles from './Select.module.css';
+import { useState } from 'react';
+import { SelectProps } from './types';
+import classNames from 'classnames/bind';
+import { FC } from 'react';
+import { DATA_TESTID } from './constants';
 
 const cx = classNames.bind(styles);
 
 export const Select: FC<SelectProps> = ({
-  label = "Select",
+  label = 'Select',
   options = [],
-  variant = "standard",
+  variant = 'standard',
   disabled = false,
   required = false,
   error = false,
-  helperText = "",
+  helperText = ''
 }) => {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<string>("");
+  const [selected, setSelected] = useState<string>('');
 
-  const classNameSelectContainer = cx("selectContainer", {
-    filled: variant === "filled",
-    outlined: variant === "outlined",
-    standard: variant === "standard",
+  const classNameSelectContainer = cx('selectContainer', {
+    filled: variant === 'filled',
+    outlined: variant === 'outlined',
+    standard: variant === 'standard',
     disabled,
-    error,
+    error
   });
 
-  const classNameArrow = cx("arrow", { arrowOpen: open });
+  const classNameArrow = cx('arrow', { arrowOpen: open });
 
-  const toggleOpen = () => {
-    if (!disabled) setOpen(!open);
-  };
+  const toggleOpen = () => setOpen((prev) => !prev);
+  const onClick = !disabled ? toggleOpen : undefined;
 
   const handleSelect = (value: string) => {
     setSelected(value);
@@ -38,39 +38,39 @@ export const Select: FC<SelectProps> = ({
   };
 
   return (
-    <div className={classNameSelectContainer} data-testid="select-container">
+    <div className={classNameSelectContainer} data-testid={DATA_TESTID.container}>
       <div
         className={styles.selectInput}
-        onClick={toggleOpen}
-        role="button"
+        onClick={onClick}
+        role='button'
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") toggleOpen();
+          if (e.key === 'Enter' || e.key === ' ') onClick?.();
         }}
-        data-testid="select-input"
+        data-testid={DATA_TESTID.input}
       >
-        <span className={cx("selectedValue", { filled: selected })} data-testid="selected-value">
-          {selected || ""}
+        <span className={cx('selectedValue', { filled: selected })} data-testid={DATA_TESTID.value}>
+          {selected || ''}
         </span>
-        <label className={selected ? styles.filled : ""} data-testid="select-label">
-          {label} {required ? "*" : ""}
+        <label className={selected ? styles.filled : ''} data-testid={DATA_TESTID.label}>
+          {label} {required ? '*' : ''}
         </label>
-        <span className={classNameArrow} data-testid="select-arrow">
+        <span className={classNameArrow} data-testid={DATA_TESTID.arrow}>
           ▾
         </span>
       </div>
 
       {open && (
-        <ul className={styles.selectDropdown} role="listbox" data-testid="select-listbox">
+        <ul className={styles.selectDropdown} role='listbox' data-testid={DATA_TESTID.listbox}>
           {options.map((opt) => (
             <li
               key={opt.value}
               className={styles.selectOption}
               onClick={() => handleSelect(opt.label)}
-              role="option"
+              role='option'
               tabIndex={0}
               onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") handleSelect(opt.label);
+                if (e.key === 'Enter' || e.key === ' ') handleSelect(opt.label);
               }}
               data-testid={`select-option-${opt.value}`}
             >
@@ -81,7 +81,7 @@ export const Select: FC<SelectProps> = ({
       )}
 
       {helperText && (
-        <span className={styles.helperText} data-testid="select-helper">
+        <span className={styles.helperText} data-testid={DATA_TESTID.helperText}>
           {helperText}
         </span>
       )}

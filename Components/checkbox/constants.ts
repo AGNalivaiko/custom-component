@@ -1,15 +1,22 @@
 export const DEFAULT_CLASSES = {
-  variant: "outlined",
-  sizeCheckbox: "medium",
-  color: "primary",
-  label: "enter your label",
+  variant: 'outlined',
+  sizeCheckbox: 'medium',
+  color: 'primary',
+  label: 'enter your label'
 };
 
 export const CUSTOM_PROPS = {
-  variant: "contained",
-  sizeCheckbox: "large",
-  color: "success",
-  label: "test",
+  variant: 'contained',
+  sizeCheckbox: 'large',
+  color: 'success',
+  label: 'test'
 };
 
-export const CUSTOM_CLASSES = ["checkboxContained", "checkboxLarge", "checkboxSuccess"];
+export const CUSTOM_CLASSES = ['checkboxContained', 'checkboxLarge', 'checkboxSuccess'];
+
+export const DATA_TESTID = {
+  label: 'checkbox-label',
+  input: 'checkbox-input',
+  text: 'checkbox-text',
+  required: 'checkbox-required'
+};

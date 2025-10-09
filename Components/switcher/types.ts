@@ -1,3 +1,3 @@
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef } from 'react';
 
-export type SwitcherProp = ComponentPropsWithRef<"input">;
+export type SwitcherProp = ComponentPropsWithRef<'input'>;

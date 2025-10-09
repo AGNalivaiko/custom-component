@@ -29,7 +29,7 @@
 
 .switchInput:checked + .switchSlider::before {
   transform: translate(17px, -50%);
-  background-color: #1976d2;
+  background-color: var(--default-background-color);
 }
 
 /* props Checked */
@@ -37,12 +37,12 @@
   opacity: 0.3;
 }
 .switchChecked .switchSlider::before {
-  background-color: rgba(2, 162, 255, 0.932);
+  background-color: var(--default-background-color);
   box-shadow: none;
 }
 
 .switchSlider::before {
-  content: "";
+  content: '';
   position: absolute;
   height: 22px;
   width: 22px;
