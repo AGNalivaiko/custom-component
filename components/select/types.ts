@@ -13,4 +13,6 @@ export type SelectProps = {
   required?: boolean;
   error?: boolean;
   helperText?: string;
+  className?: string;
+  style?: React.CSSProperties;
 };

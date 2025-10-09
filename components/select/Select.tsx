@@ -3,23 +3,25 @@ import { useState } from 'react';
 import { SelectProps } from './types';
 import classNames from 'classnames/bind';
 import { FC } from 'react';
-import { DATA_TESTID } from './constants';
+import { DATA_TESTID, DEFAULT_PROPS } from './constants';
 
 const cx = classNames.bind(styles);
 
 export const Select: FC<SelectProps> = ({
-  label = 'Select',
+  label = DEFAULT_PROPS.default_label,
   options = [],
-  variant = 'standard',
+  variant = DEFAULT_PROPS.standard,
   disabled = false,
   required = false,
   error = false,
-  helperText = ''
+  helperText = '',
+  className,
+  style
 }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string>('');
 
-  const classNameSelectContainer = cx('selectContainer', {
+  const classNameSelectContainer = cx('selectContainer', className, {
     filled: variant === 'filled',
     outlined: variant === 'outlined',
     standard: variant === 'standard',
@@ -48,6 +50,7 @@ export const Select: FC<SelectProps> = ({
           if (e.key === 'Enter' || e.key === ' ') onClick?.();
         }}
         data-testid={DATA_TESTID.input}
+        style={style}
       >
         <span className={cx('selectedValue', { filled: selected })} data-testid={DATA_TESTID.value}>
           {selected || ''}

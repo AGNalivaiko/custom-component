@@ -34,3 +34,8 @@ export const DATA_TESTID = {
   helperText: 'select-helper',
   arrow: 'select-arrow'
 };
+
+export const DEFAULT_PROPS = {
+  standard: 'standard',
+  default_label: 'Select'
+};
